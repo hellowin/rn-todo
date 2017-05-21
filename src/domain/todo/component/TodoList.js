@@ -1,22 +1,32 @@
 import React from 'react'
-import { List, ListItem, Text } from 'native-base'
+import { Form, Item, Input, Icon } from 'native-base'
 import { connect } from 'react-redux'
+import todoRepo from '@src/infra/repo/todo'
 
 const mapStateToProps = (state) => ({
   list: state.todo.list,
 })
 
-const TodoList = props => {
-  const { list } = props
-  return (
-    <List>
-      {list.map((li, id) => (
-        <ListItem key={id}>
-          <Text>{li}</Text>
-        </ListItem>
-      ))}
-    </List>
-  );
+class TodoList extends React.Component {
+
+  remove = (index) => {
+    todoRepo.remove(index)
+  }
+
+  render() {
+    const { list } = this.props
+    return (
+      <Form>
+        {list.map((li, id) => (
+          <Item key={id}>
+            <Input value={li} disabled />
+            <Icon name="remove" onPress={() => this.remove(id)} />
+          </Item>
+        ))}
+      </Form>
+    );
+  }
+
 }
 
 export default connect(mapStateToProps)(TodoList)
