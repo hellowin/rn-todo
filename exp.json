@@ -4,7 +4,7 @@
   "slug": "rn-todo",
   "privacy": "public",
   "sdkVersion": "17.0.0",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "orientation": "portrait",
   "primaryColor": "#cccccc",
   "icon": "./assets/icons/app.png",
@@ -16,6 +16,10 @@
     "assetExts": ["ttf", "mp4"]
   },
   "ios": {
-    "supportsTablet": true
-  }
+    "supportsTablet": true,
+    "bundleIdentifier": "io.hellowin.rntodo"
+  },
+  "android": {
+     "package": "io.hellowin.rntodo"
+   }
 }
