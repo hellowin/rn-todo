@@ -1,5 +1,6 @@
 import React from 'react'
 import { Form, Item, Input, Icon } from 'native-base'
+import { View } from 'react-native'
 import { connect } from 'react-redux'
 import todoRepo from '@src/infra/repo/todo'
 
@@ -16,14 +17,14 @@ class TodoList extends React.Component {
   render() {
     const { list } = this.props
     return (
-      <Form>
+      <View>
         {list.map((li, id) => (
           <Item key={id}>
             <Input value={li} disabled />
-            <Icon name="remove" onPress={() => this.remove(id)} />
+            <Icon name="remove-circle" onPress={() => this.remove(id)} />
           </Item>
         ))}
-      </Form>
+      </View>
     );
   }
 
