@@ -2,7 +2,7 @@ import React from 'react'
 import { Form, Item, Input, Icon } from 'native-base'
 import { View } from 'react-native'
 import { connect } from 'react-redux'
-import todoRepo from '@src/infra/repo/todo'
+import todoRepo from 'src/infra/repo/todo'
 
 const mapStateToProps = (state) => ({
   list: state.todo.list,

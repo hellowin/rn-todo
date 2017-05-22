@@ -1,7 +1,7 @@
 import React from 'react'
 import { Content, Form, Item, Input, Body, Button, Text, Icon } from 'native-base'
 import { StyleSheet, View } from 'react-native'
-import todoRepo from '@src/infra/repo/todo'
+import todoRepo from 'src/infra/repo/todo'
 
 const styles = StyleSheet.create({
   formContainer: {

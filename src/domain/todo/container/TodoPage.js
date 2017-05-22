@@ -1,3 +1,4 @@
+// @flow
 import React from 'react'
 import { Content } from 'native-base'
 import TodoInput from '../component/TodoInput.js'
@@ -7,7 +8,7 @@ import { View, StyleSheet } from 'react-native'
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column-reverse',
+    flexDirection: 'column',
     justifyContent: 'space-between',
   }
 })
