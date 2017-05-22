@@ -1,3 +1,4 @@
+// @flow
 import React from 'react'
 import { Content, Form, Item, Input, Body, Button, Text, Icon } from 'native-base'
 import { StyleSheet, View } from 'react-native'
@@ -13,8 +14,12 @@ const styles = StyleSheet.create({
 })
 
 class TodoInput extends React.Component {
+
+  state: {
+    item: string
+  }
   
-  constructor(props) {
+  constructor(props: Object) {
     super(props)
 
     this.state = {
@@ -22,7 +27,7 @@ class TodoInput extends React.Component {
     }
   }
 
-  onChange = (e) => {
+  onChange = (e: string) => {
     this.setState({ item: e })
   }
 
