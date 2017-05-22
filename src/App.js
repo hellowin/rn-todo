@@ -14,7 +14,7 @@ class App extends React.Component {
           }}
         >
           <Body>
-            <Title>React Native ToDo</Title>
+            <Title>React Native To Do</Title>
           </Body>
         </Header>
         <Content>

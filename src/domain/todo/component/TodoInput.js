@@ -3,6 +3,7 @@ import React from 'react'
 import { Content, Form, Item, Input, Body, Button, Text, Icon } from 'native-base'
 import { StyleSheet, View } from 'react-native'
 import todoRepo from 'src/infra/repo/todo'
+import TodoItem from '../service/TodoItem'
 
 const styles = StyleSheet.create({
   formContainer: {
@@ -16,33 +17,34 @@ const styles = StyleSheet.create({
 class TodoInput extends React.Component {
 
   state: {
-    item: string
+    text: string
   }
   
   constructor(props: Object) {
     super(props)
 
     this.state = {
-      item: '',
+      text: '',
     }
   }
 
   onChange = (e: string) => {
-    this.setState({ item: e })
+    this.setState({ text: e })
   }
 
   add = () => {
-    const { item } = this.state
-    this.setState({ item: '' })
+    const { text } = this.state
+    this.setState({ text: '' })
+    const item = new TodoItem(text)
     todoRepo.add(item)
   }
 
   render() {
-    const { item } = this.state
+    const { text } = this.state
     return (
       <View>
         <Item>
-          <Input placeholder="To do item" value={item} onChangeText={this.onChange} />
+          <Input placeholder="To do item" value={text} onChangeText={this.onChange} />
           <Icon name="add-circle" onPress={this.add} />
         </Item>
       </View>
