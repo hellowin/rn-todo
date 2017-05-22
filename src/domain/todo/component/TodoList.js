@@ -1,3 +1,4 @@
+// @flow
 import React from 'react'
 import { Form, Item, Input, Icon } from 'native-base'
 import { View } from 'react-native'
