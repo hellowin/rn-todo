@@ -16,6 +16,13 @@ const todoRepo = {
     const list = [...store.getState().todo.list]
     list.splice(index, 1)
     store.dispatch(action.todoSet({ list }))
+  },
+
+  mark(index: number) {
+    const list = [...store.getState().todo.list]
+    const newItem = list.slice(index, index + 1).map((item: TodoItem) => ({ ...item, done: true }))
+    list.splice(index, 1, ...newItem)
+    store.dispatch(action.todoSet({ list }))
   }
 
 };

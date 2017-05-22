@@ -1,6 +1,6 @@
 // @flow
 import React from 'react'
-import { Form, Item, Input, Icon } from 'native-base'
+import { Form, Item, Input, Icon, Text } from 'native-base'
 import { View } from 'react-native'
 import { connect } from 'react-redux'
 import todoRepo from 'src/infra/repo/todo'
@@ -16,18 +16,15 @@ class TodoList extends React.Component {
     list: TodoItem[]
   }
 
-  remove = (index) => {
-    todoRepo.remove(index)
-  }
-
   render() {
     const { list } = this.props
     return (
       <View>
         {list.map((item, id) => (
           <Item key={id}>
+            {!item.done && <Icon name="checkmark-circle" onPress={() => todoRepo.mark(id)} />}
             <Input value={item.desc} disabled />
-            <Icon name="remove-circle" onPress={() => this.remove(id)} />
+            <Icon name="remove-circle" onPress={() => todoRepo.remove(id)} />
           </Item>
         ))}
       </View>
