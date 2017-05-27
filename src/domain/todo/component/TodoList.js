@@ -5,6 +5,7 @@ import { View } from 'react-native'
 import { connect } from 'react-redux'
 import todoRepo from 'src/infra/repo/todo'
 import TodoItem from '../service/TodoItem'
+import uuid from 'uuid'
 
 const mapStateToProps = (state) => ({
   list: state.todo.list,
@@ -13,15 +14,27 @@ const mapStateToProps = (state) => ({
 class TodoList extends React.Component {
 
   props: {
-    list: TodoItem[]
+    list: TodoItem[],
+    type: string,
   }
 
   render() {
-    const { list } = this.props
+    const { list, type } = this.props
+
+    let filteredList
+    switch (type) {
+      case 'done':
+        filteredList = list.filter(li => li.done)
+        break
+      case 'list':
+      default:
+        filteredList = list.filter(li => !li.done)
+    }
+
     return (
       <View>
-        {list.map((item, id) => (
-          <Item key={id}>
+        {filteredList.map((item, id) => (
+          <Item key={uuid.v4()}>
             {!item.done && <Icon name="checkmark-circle" onPress={() => todoRepo.mark(id)} />}
             <Input value={item.desc} disabled />
             <Icon name="remove-circle" onPress={() => todoRepo.remove(id)} />
