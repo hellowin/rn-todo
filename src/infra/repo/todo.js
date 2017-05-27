@@ -2,6 +2,8 @@
 import store from '../service/store'
 import action from '../service/action'
 import TodoItem from 'src/domain/todo/service/TodoItem'
+import { AsyncStorage } from 'react-native'
+import _ from 'lodash'
 
 const todoRepo = {
 
@@ -9,21 +11,41 @@ const todoRepo = {
     if (!item) return
     const currentList = store.getState().todo.list
     const newList = [...currentList, item]
-    store.dispatch(action.todoSet({ list: newList }))
+    AsyncStorage.setItem('list', JSON.stringify(newList))
+      .then(() => store.dispatch(action.todoSet({ list: newList })))
   },
 
-  remove(index: number) {
-    const list = [...store.getState().todo.list]
-    list.splice(index, 1)
-    store.dispatch(action.todoSet({ list }))
+  remove(id: string) {
+    const list = [...store.getState().todo.list].filter(li => li.id !== id)
+    AsyncStorage.setItem('list', JSON.stringify(list))
+      .then(() => store.dispatch(action.todoSet({ list })))
   },
 
-  mark(index: number) {
-    const list = [...store.getState().todo.list]
-    const newItem = list.slice(index, index + 1).map((item: TodoItem) => ({ ...item, done: true }))
-    list.splice(index, 1, ...newItem)
-    store.dispatch(action.todoSet({ list }))
-  }
+  mark(id: string) {
+    const list = [...store.getState().todo.list].map(li => {
+      if (li.id === id) {
+        return { ...li, done: true }
+      } else {
+        return { ...li }
+      }
+    })
+    AsyncStorage.setItem('list', JSON.stringify(list))
+      .then(() => store.dispatch(action.todoSet({ list })))
+  },
+
+  restore() {
+    AsyncStorage.getItem('list')
+      .then(listString => {
+        const list = JSON.parse(listString)
+        if (!_.isArray(list)) throw new Error('List is not an array')
+        return list
+      })
+      .catch(err => {
+        console.error(err)
+        return []
+      })
+      .then(list => store.dispatch(action.todoSet({ list })))
+  },
 
 };
 
