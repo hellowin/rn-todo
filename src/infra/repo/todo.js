@@ -21,6 +21,12 @@ const todoRepo = {
       .then(() => store.dispatch(action.todoSet({ list })))
   },
 
+  removeAllDone() {
+    const list = [...store.getState().todo.list].filter(li => !li.done)
+    AsyncStorage.setItem('list', JSON.stringify(list))
+      .then(() => store.dispatch(action.todoSet({ list })))
+  },
+
   mark(id: string) {
     const list = [...store.getState().todo.list].map(li => {
       if (li.id === id) {
