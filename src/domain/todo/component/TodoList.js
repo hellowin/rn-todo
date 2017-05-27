@@ -1,7 +1,7 @@
 // @flow
 import React from 'react'
 import { Form, Item, Input, Icon, Text } from 'native-base'
-import { View } from 'react-native'
+import { ScrollView } from 'react-native'
 import { connect } from 'react-redux'
 import todoRepo from 'src/infra/repo/todo'
 import TodoItem from '../service/TodoItem'
@@ -32,8 +32,8 @@ class TodoList extends React.Component {
     }
 
     return (
-      <View>
-        <Form>
+      <Form>
+        <ScrollView>
           {filteredList.map((item: TodoItem) => (
             <Item key={uuid.v4()} fixedLabel last>
               {!item.done && <Icon name="checkmark-circle" onPress={() => todoRepo.mark(item.id)} />}
@@ -41,8 +41,8 @@ class TodoList extends React.Component {
               <Icon name="remove-circle" onPress={() => todoRepo.remove(item.id)} />
             </Item>
           ))}
-        </Form>
-      </View>
+        </ScrollView>
+      </Form>
     );
   }
 
