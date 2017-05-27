@@ -9,7 +9,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    justifyContent: 'space-between',
   }
 })
 
@@ -34,8 +33,8 @@ class TodoPage extends React.Component {
           </Body>
         </Header>
         <View style={styles.container}>
-          <TodoList type="list" />
           <TodoInput />
+          <TodoList type="list" />
         </View>
       </Container>
     );

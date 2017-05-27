@@ -43,10 +43,12 @@ class TodoInput extends React.Component {
     const { text } = this.state
     return (
       <View>
-        <Item>
-          <Input placeholder="Add to do item" value={text} onChangeText={this.onChange} />
-          <Icon name="add-circle" onPress={this.add} />
-        </Item>
+        <Form>
+          <Item fixedLabel last>
+            <Input placeholder="Add to do item" value={text} onChangeText={this.onChange} />
+            <Icon name="add-circle" onPress={this.add} />
+          </Item>
+        </Form>
       </View>
     );
   }

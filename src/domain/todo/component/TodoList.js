@@ -33,13 +33,15 @@ class TodoList extends React.Component {
 
     return (
       <View>
-        {filteredList.map((item, id) => (
-          <Item key={uuid.v4()}>
-            {!item.done && <Icon name="checkmark-circle" onPress={() => todoRepo.mark(id)} />}
-            <Input value={item.desc} disabled />
-            <Icon name="remove-circle" onPress={() => todoRepo.remove(id)} />
-          </Item>
-        ))}
+        <Form>
+          {filteredList.map((item, id) => (
+            <Item key={uuid.v4()} fixedLabel last>
+              {!item.done && <Icon name="checkmark-circle" onPress={() => todoRepo.mark(id)} />}
+              <Input value={item.desc} disabled />
+              <Icon name="remove-circle" onPress={() => todoRepo.remove(id)} />
+            </Item>
+          ))}
+        </Form>
       </View>
     );
   }
