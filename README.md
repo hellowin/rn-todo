@@ -16,3 +16,7 @@ This repo is an example implementation of React Native mobile application that w
 ## Published Version
 
 [RN-Todo](https://exp.host/@hellowin/rn-todo)
+
+# License
+
+[MIT](https://github.com/hellowin/rn-todo/blob/master/LICENSE)
