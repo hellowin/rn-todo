@@ -1,6 +1,6 @@
 {
   "name": "rn-todo",
-  "description": "An empty new project",
+  "description": "Example RN Todo",
   "slug": "rn-todo",
   "privacy": "public",
   "sdkVersion": "17.0.0",
